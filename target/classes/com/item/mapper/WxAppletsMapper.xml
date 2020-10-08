@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.item.mapper.WxAppletsMapper">
+
+    <!--resultMap 多对多的对应关系的映射-->
+    <resultMap id="findCategoryAll" type="com.item.bean.FloorTitle">
+<!--        cloumn 是数据库里面的字段   property 是实体类里面的字段-->
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="image_src" property="image_src"></result>
+        <result column="p_id" property="p_id"></result>
+<!--        property 是对应的实体类里面的属性或方法 ofType是当前实体类的路径-->
+<!--        association 是查询对象
+            collection  是查询一个集合
+-->
+        <collection property="productList" ofType="com.item.bean.ProductList">
+            <id property="id_p" column="id_p"></id>
+            <result property="name" column="name"></result>
+            <result property="image_srcc" column="image_srcc"></result>
+            <result property="image_width" column="image_width"></result>
+            <result property="open_type" column="open_type"></result>
+            <result property="navigator_url" column="navigator_url"></result>
+            <result property="pid" column="pid"></result>
+        </collection>
+
+    </resultMap>
+<!--    id为mapper层的方法  resultMap是上面的映射定义的别名-->
+    <select id="findCategoryAll" resultMap="findCategoryAll">
+          select f.*,p.* from floor_title f,product_list p where f.id = p.pid
+    </select>
+
+<!--================ ==============================================================================-->
+
+    <!--resultMap 多对多的对应关系的映射 resultMap是 mapper层的方法-->
+    <resultMap id="findFloorProductList" type="com.item.bean.FloorProductList">
+        <!--        cloumn 是数据库里面的字段   property 是实体类里面的字段-->
+<!--        <id column="id" property="id"></id>-->
+        <association property="floorTitle" javaType="com.item.bean.FloorTitle">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="image_src" property="image_src"></result>
+            <result column="p_id" property="p_id"></result>
+        </association>
+        <!--        property 是对应的实体类里面的属性或方法 ofType是当前实体类的路径-->
+        <!--        association 是查询对象
+                    collection  是查询一个集合
+        -->
+        <collection property="productLists" ofType="com.item.bean.ProductList">
+            <id property="id_p" column="id_p"></id>
+            <result property="name" column="name"></result>
+            <result property="image_src" column="image_src"></result>
+            <result property="image_width" column="image_width"></result>
+            <result property="open_type" column="open_type"></result>
+            <result property="navigator_url" column="navigator_url"></result>
+            <result property="pid" column="pid"></result>
+        </collection>
+
+    </resultMap>
+    <!--    id为mapper层的方法  resultMap是上面的映射定义的别名-->
+    <select id="findFloorProductList" resultMap="findFloorProductList">
+          select f.*,p.* from floor_title f,product_list p where f.id = p.pid
+    </select>
+</mapper>
