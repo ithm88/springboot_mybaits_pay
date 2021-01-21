@@ -32,8 +32,8 @@ public class SMSUtils {
 		final String product = "Dysmsapi";// 短信API产品名称（短信产品名固定，无需修改）
 		final String domain = "dysmsapi.aliyuncs.com";// 短信API产品域名（接口地址固定，无需修改）
 		// 替换成你的AK
-		final String accessKeyId = "LTAI4G5hgksBL31XhAsVPW7x";// 你的accessKeyId,参考本文档步骤2
-		final String accessKeySecret = "isgeQExMSZ7KJufGneHp5FDxHvBoGn";// 你的accessKeySecret，参考本文档步骤2
+		final String accessKeyId = "ak";// 你的accessKeyId,参考本文档步骤2
+		final String accessKeySecret = "sk";// 你的accessKeySecret，参考本文档步骤2
 		// 初始化ascClient,暂时不支持多region（请勿修改）
 		IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
 		DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
@@ -46,7 +46,7 @@ public class SMSUtils {
 		request.setPhoneNumbers(phoneNumbers);
 		// 必填:短信签名-可在短信控制台中找到
 
-		request.setSignName("美邦播客");
+		request.setSignName("短信签名");
 		// 必填:短信模板-可在短信控制台中找到
 		request.setTemplateCode(VALIDATE_CODE);
 		// 可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为, \"password\":\"" + password + "\"
@@ -72,11 +72,8 @@ public class SMSUtils {
 		//动态生成验证码
 		Integer code6 = ValidateCodeUtils.generateValidateCode(6);
 		System.out.println("验证码:"+code6);
-		SMSUtils.sendShortMessage("13923815937",String.valueOf(code6));
-		//建东 13138586595
-		//老表 15770626364
-		//宿舍老弟 13129525006
-		//古 13923815937
+		SMSUtils.sendShortMessage("133333333",String.valueOf(code6));
+		
 	}
 
 }
