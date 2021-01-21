@@ -15,8 +15,8 @@ import org.junit.Test;
  * 短信发送工具类
  */
 public class SMSUtils {
-	public static final String VALIDATE_CODE = "SMS_181500874";//发送短信验证码
-	public static final String ORDER_NOTICE = "SMS_181500874";//体检预约成功通知
+	public static final String VALIDATE_CODE = "sms";//发送短信验证码
+	public static final String ORDER_NOTICE = "sms";//体检预约成功通知
 
 	/**
 	 * 发送短信
